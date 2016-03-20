@@ -1,5 +1,5 @@
 # go_around
-ev3dev上で、PythonでEV3を動かすさサンプルです。
+ev3dev上で、PythonでEV3を動かすサンプルです。
 
 classed_go_around.pyにはGoAroundクラスがあります。
 ev3devのauto.pyモジュールをインポートしています。
