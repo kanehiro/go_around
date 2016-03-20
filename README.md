@@ -1,2 +1,9 @@
 # go_around
 ev3dev上で、PythonでEV3を動かすさサンプルです。
+
+classed_go_around.pyにはGoAroundクラスがあります。
+ev3devのauto.pyモジュールをインポートしています。
+GoAroundクラスにはローバーを直進、後退、ターンさせるメソッドと
+超音波センサーの値を返すプロパティがあります。
+
+use_go_around_class.pyはGoAroundクラスの利用例です。
