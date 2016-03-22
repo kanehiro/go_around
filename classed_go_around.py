@@ -42,7 +42,7 @@ class GoAround:
         # When motor is stopped, its `state` attribute returns empty list.
         # Wait until both motors are stopped:
         # any([True,True,False]) # => True
-        self.motor_wait(0.1)
+        self.__motor_wait(0.1)
 
     def turn(self):
         self.green()
@@ -50,9 +50,9 @@ class GoAround:
         for m in self.motors:
             m.run_timed(duty_cycle_sp=speed, time_sp=500)
             speed *= -1
-        self.motor_wait(0.1)
+        self.__motor_wait(0.1)
 
-    def motor_wait(self,interval):
+    def __motor_wait(self,interval):
         while any(m.state for m in self.motors):
             sleep(interval)
 
