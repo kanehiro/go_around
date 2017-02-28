@@ -3,7 +3,7 @@ from ev3dev.auto import *
 from time import sleep
 
 class GoAround:
-    SPEED = 50
+    SPEED = 500
     def __init__(self):
         self.motors = [LargeMotor(address) for address in (OUTPUT_B, OUTPUT_C)]
         assert all([m.connected for m in self.motors]),\
@@ -25,20 +25,20 @@ class GoAround:
         sleep(3)
 
         for m in self.motors:
-            m.run_direct(duty_cycle_sp=self.SPEED)
+            m.run_forever(speed_sp=self.SPEED)
 
     def forward(self):
         # Turn Forward lights on:
         self.green()
 
         for m in self.motors:
-            m.run_direct(duty_cycle_sp=self.SPEED)
+            m.run_forever(speed_sp=self.SPEED)
 
     def back(self):
         self.red()
         self.alarm(2)
         for m in self.motors:
-            m.run_timed(duty_cycle_sp=self.SPEED * -1, time_sp=1000)
+            m.run_timed(speed_sp=self.SPEED * -1, time_sp=1000)
         # When motor is stopped, its `state` attribute returns empty list.
         # Wait until both motors are stopped:
         # any([True,True,False]) # => True
@@ -48,7 +48,7 @@ class GoAround:
         self.green()
         speed = self.SPEED
         for m in self.motors:
-            m.run_timed(duty_cycle_sp=speed, time_sp=500)
+            m.run_timed(speed_sp=speed, time_sp=500)
             speed *= -1
         self.__motor_wait(0.1)
 
@@ -63,8 +63,7 @@ class GoAround:
     def stop(self):
         Leds.all_off()
         for m in self.motors:
-            m.stop(stop_command='brake')
+            m.stop(stop_action='brake')
     @property
     def us_value(self):
         return self.us.value()
-
